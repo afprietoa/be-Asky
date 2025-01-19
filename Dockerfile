@@ -20,6 +20,9 @@ RUN mvn -f pom.xml clean package -DskipTests
 # Etapa 2: Imagen final para la ejecución
 FROM openjdk:21-slim AS finalimg
 
+# Configurar codificación UTF-8 en el entorno
+ENV LANG=C.UTF-8
+
 # Copiar el archivo JAR generado
 COPY --from=mavenimg /workspace/target/*.jar /app.jar
 
